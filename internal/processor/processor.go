@@ -12,9 +12,6 @@ import (
 	"strings"
 )
 
-// LineWidth определяет ширину линий в пикселях
-const LineWidth = 2
-
 // ProcessImage обрабатывает одно изображение, рисуя на нем вертикальную и горизонтальную линии
 func ProcessImage(inputPath, outputPath string) error {
 	// Открываем файл изображения
@@ -40,19 +37,15 @@ func ProcessImage(inputPath, outputPath string) error {
 	draw.Draw(rgba, bounds, img, bounds.Min, draw.Src)
 
 	// Рисуем вертикальную линию посередине
-	centerX := width / 2
-	for x := centerX - LineWidth/2; x < centerX+LineWidth/2; x++ {
-		for y := 0; y < height; y++ {
-			rgba.Set(x, y, color.Black)
-		}
+	x := width / 2
+	for y := 0; y < height; y++ {
+		rgba.Set(x, y, color.Black)
 	}
 
 	// Рисуем горизонтальную линию посередине
-	centerY := height / 2
-	for y := centerY - LineWidth/2; y < centerY+LineWidth/2; y++ {
-		for x := 0; x < width; x++ {
-			rgba.Set(x, y, color.Black)
-		}
+	y := height / 2
+	for x := 0; x < width; x++ {
+		rgba.Set(x, y, color.Black)
 	}
 
 	// Создаем выходной файл
